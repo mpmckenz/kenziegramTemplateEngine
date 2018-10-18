@@ -1,0 +1,40 @@
+body {
+    background-color: lightslategray;
+}
+
+#headerDiv {
+    font-size: 5vw;
+    text-align: center;
+    position: relative;
+    border: 3px solid black;
+    border-radius: 20%;
+    background-color: darkgray;
+}
+
+#photoDiv {
+    text-align: center;
+    padding-bottom: 1%;
+}
+
+img {
+    border: 5px solid black;
+    border-radius: 10%;
+    height: 16vh;
+    width: 16vw;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (min-width: 540px) {
+    #photoContainer {
+        columns: 2;
+    }
+}
+
+@media (min-width: 830px) {
+    #photoContainer {
+        columns: 3;
+    }
+}
