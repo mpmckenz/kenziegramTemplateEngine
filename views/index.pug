@@ -1,0 +1,13 @@
+html
+    head
+        title= "KenzieGame pug Engine"
+    link(rel="stylesheet" href="style.css")
+    center
+        div(id="headerDiv")
+            h1= "Welcome to KenzieGram (using Pug Template Engine!)"
+        form(action="/uploads" method="POST" enctype="multipart/form-data")
+            input(type="file" name="myFile" id="myFile")
+            br
+            button(type="submit")="Upload Image"
+        each val in photos
+            img(src="/uploads/" + val)

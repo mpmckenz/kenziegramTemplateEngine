@@ -8,43 +8,18 @@ const port = 3000
 
 const app = express()
 
+app.set("view engine", "pug")
+
 app.use(express.static(publicPath));
 const upload = multer({ dest: photoPath })
 
 const uploadedFiles = [];
-
-function pictureDropper(photos) {
-    let uploadedPhotos = ""
-    for (let i = 0; i < photos.length; i++) {
-        let photoNames = photos[i];
-        uploadedPhotos += `<img src="/uploads/${photoNames}"/>`
-    }
-    return uploadedPhotos
-}
-
+console.log(uploadedFiles)
 app.get("/", (request, response) => {
     const path = './public/uploads';
-    fs.readdir(path, function (err, items) {
+    fs.readdir(path, (err, items) => {
         // console.log(items);
-        response.send(
-            `<center>
-        <div id="headerDiv">
-        <h1>Welcome to Kenziegram!</h1>
-        </div>
-        <link rel="stylesheet" href="style.css">
-    <form id="user-create-form" action="/uploads" method="POST" enctype="multipart/form-data">
-    <input type="file" name="myFile" id="myFile">
-    <br>
-    <button type="submit">Upload Image</button>
-    </form>
-    <div id="photoContainer">
-    <div id="allPhotosDiv">
-            <div id="photoDiv">
-    ${pictureDropper(items)}
-    </div>
-    </div>
-    </div>
-    </center>`)
+        response.render("index", { photos: items, imagePathArray: uploadedFiles })
     });
 })
 
